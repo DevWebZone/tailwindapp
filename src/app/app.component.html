@@ -1,9 +1,15 @@
 
-<aside class="shadow shadow-black-500 flex flex-col items-center justify-between" id="sidebar">
+<aside class="h-screen shadow shadow-black-500 flex flex-col items-center justify-between" [ngClass]="isCollapsed ? 'collapse' : 'expand' " id="sidebar">
   <div class="w-full text-right">
-    <button class="text-2xl font-semibold w-10 h-10 m-6 rounded-full">&lt;&lt;</button>
+    <button *ngIf="isCollapsed == false" (click)="OnClick()" class="text-xl text-center font-bold pb-1 w-11 h-11 m-6 rounded-full">&lt;&lt;</button>
+    <button *ngIf="isCollapsed === true" (click)="OnClick()" class="text-black block text-2xl font-semibold w-11 h-11 m-4 rounded-full hover:bg-black hover:text-white">
+    
+      <span class="w-full h-full ">
+        <i class="fa-solid fa-bars"></i>
+      </span>
+    </button>
   </div>
-  <ul class="list-none text-xl h-96 m-16">
+  <ul *ngIf="isCollapsed == false"  class="list-none text-xl h-92 m-16">
       <li class="pb-12"><span class="mr-3"><i class="fa-brands fa-twitter"></i></span>
         <a href="#">Twitter</a>
       </li>
@@ -14,9 +20,27 @@
         <a href="#skills">GitHub</a>
       </li>
   </ul>
-  <div></div>
+  <ul *ngIf="isCollapsed"  class="list-none h-92 m-16">
+    <li class="pb-12"><a class="text-xl"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+    <li class="pb-12"><a class="text-xl"><i class="fa-brands fa-instagram"></i></a>
+    </li>
+    <li class="pb-12"><a class="text-xl"><i class="fa-brands fa-github"></i></a>
+    </li>
+</ul>
+  <div *ngIf="isCollapsed == false"  class="w-full text-center mb-10">
+    <input class="bg-gray-300 h-8 w-40 text-center rounded-full text-white" type="text" placeholder="search">
+    <span class="ml-3">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </span> 
+  </div>
+  <div *ngIf="isCollapsed"  class="w-full text-center mb-10">
+    <a class="text-xl">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </a> 
+  </div>
 </aside>
-<main id="main-container">
+<main [style.background-image]="image"  class="h-screen w-screen flex flex-col items-center justify-between transition-all duration-500" id="main-container">
   <div class="w-full h-24 flex flex-row items-center justify-between" id="main-header">
     <h1 id="header-text" class="text-2xl font-semibold mt-16 ml-24 h-full text-center">
       Decorative.
@@ -26,9 +50,16 @@
       <li class="inline-block"><a href="#about">Shop</a></li>
       <li class="inline-block"><a href="#skills">Collection</a></li>
       <li class="inline-block"><a href="#work-experience">Gallery</a></li>
-  </ul>
-  <div class="h-full w-28 ml-24 inline" id="profile-pic">
-    <img class="max-w-none h-10 w-10 mt-6 ml-12 rounded-full" src="../assets/profilepic.jpeg" alt="test">
+    </ul>
+    <div class="h-full w-28 ml-24 inline" id="profile-pic">
+      <img class="max-w-none h-10 w-10 mt-6 ml-12 rounded-full" src="../assets/profilepic.jpeg" alt="test">
+    </div>
   </div>
+  <div class="w-full h-24 p-5 flex flex-row items-center justify-center" id="main-footer">
+    <div>
+      <button (click)="PreviousImage()" class="mr-8 w-8 h-8 bg-gray-300 rounded-full hover:bg-black hover:text-white"><i class="fa-solid fa-arrow-left"></i></button>
+      <span [ngClass]="current === i? 'active':''" class="w-4 h-4 m-1 text-xs text-gray-300 text-center" *ngFor='let image of bgImages;let i = index'><i class="fa-solid fa-circle"></i></span>
+      <button (click)="NextImage()" class="ml-8 w-8 h-8 bg-gray-300 rounded-full hover:bg-black hover:text-white"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
   </div>
 </main>
