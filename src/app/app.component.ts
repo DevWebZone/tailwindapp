@@ -12,8 +12,8 @@ import { interval, Subscription } from 'rxjs';
 })
 export class AppComponent{
   title = 'tailwindapp';
-  isCollapsed = false;
-  bgImages = ["../assets/backgroun-images/background_1.jpg", "../assets/backgroun-images/background_2.jpg", "../assets/backgroun-images/background_3.jpg", "../assets/backgroun-images/background_4.jpg"];
+  isCollapsed = true;
+  bgImages = ["../assets/backgroun-images/background_4.jpg", "../assets/backgroun-images/background_2.jpg", "../assets/backgroun-images/background_3.jpg", "../assets/backgroun-images/background_1.jpg"];
   current = 0;
   image:any;
   id:any;
@@ -21,7 +21,7 @@ export class AppComponent{
   constructor()
   {
    this.image = "url(" + this.bgImages[0] + ")";
-   this.id = setInterval(() => this.NextImage(), 4000);
+   //this.id = setInterval(() => this.NextImage(), 4000);
   }
   ngOnInit() {
     //const source = interval(1000);

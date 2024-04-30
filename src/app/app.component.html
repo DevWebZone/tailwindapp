@@ -40,7 +40,7 @@
     </a> 
   </div>
 </aside>
-<main [style.background-image]="image"  class="h-screen w-screen flex flex-col items-center justify-between transition-all duration-500" id="main-container">
+<main [style.background-image]="image" class="h-screen w-screen flex flex-col items-center justify-between transition-all z-0 duration-500" id="main-container">
   <div class="w-full h-24 flex flex-row items-center justify-between" id="main-header">
     <h1 id="header-text" class="text-2xl font-semibold mt-16 ml-24 h-full text-center">
       Decorative.
@@ -55,11 +55,23 @@
       <img class="max-w-none h-10 w-10 mt-6 ml-12 rounded-full" src="../assets/profilepic.jpeg" alt="test">
     </div>
   </div>
+  <div *ngIf="current===0" class="w-full h-full relative z-10" id="main-body">
+    <div class="absolute w-26 h-48 top-24 left-40 text-left">
+      <p class="pl-2">A beautiful house</p>
+      <h1 class="text-8xl font-bold text-left mt-4 mb-8">Modern.</h1>
+      <p class="pl-2">Check how you can arrange your house <br>
+        or apartment. Choose from ready made <br>
+        arrangements.
+      </p>
+      <img class="h-48 w-96 z-20 mt-8 object-fill opacity-90 shadow-xl rounded-xl" src="../assets/backgroun-images/small-image.jpg" alt="test-1">
+    </div>
+    
+  </div>
   <div class="w-full h-24 p-5 flex flex-row items-center justify-center" id="main-footer">
     <div>
       <button (click)="PreviousImage()" class="mr-8 w-8 h-8 bg-gray-300 rounded-full hover:bg-black hover:text-white"><i class="fa-solid fa-arrow-left"></i></button>
       <span [ngClass]="current === i? 'active':''" class="w-4 h-4 m-1 text-xs text-gray-300 text-center" *ngFor='let image of bgImages;let i = index'><i class="fa-solid fa-circle"></i></span>
       <button (click)="NextImage()" class="ml-8 w-8 h-8 bg-gray-300 rounded-full hover:bg-black hover:text-white"><i class="fa-solid fa-arrow-right"></i></button>
-    </div>
+    </div> 
   </div>
 </main>
